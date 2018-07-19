@@ -1,0 +1,139 @@
+html, body {
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+.contentwrapper {
+  height: 100%;
+}
+
+.content {
+  background-color: rgb(247, 247, 247);
+  margin-top: 0;
+  overflow: scroll;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+
+.content-card {
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 85%;
+  margin: 15px auto;
+  box-shadow: 2px 2px rgb(240, 240, 240);
+}
+
+.card:hover {
+  box-shadow: 2px 2px #bf0016;
+}
+
+.content-separator {
+  padding: 5px;
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.desc {
+  font-size: 12px;
+}
+
+.date-posted {
+  color: rgba(46, 46, 46, 0.500);
+  font-size: 10px;
+}
+
+.btn-assign {
+  font-size: 16px;
+}
+
+.btn-assign>i {
+  font-size: 16px;
+}
+
+.btn-text {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.content-title {
+  text-align: left;
+}
+
+.content-title:hover {
+  color: #bf001691;
+  text-shadow: 0.5px 0.5px #bf0016;
+}
+
+.content-desc {
+  cursor: text;
+}
+
+.content-desc::selection {
+  color: #fff;
+  background-color: #bf0016;
+}
+
+.lower-buttons {
+  display: inline-block;
+}
+
+.assignTo-wrapper {
+  display: inline-block;
+}
+
+.assignTo {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.assignToAvatar {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.assignToName {
+  display: inline-block;
+}
+
+.btn-bookmark {
+  display: inline-block;
+}
+
+.no-content-wrapper {
+  text-align: center;
+}
+
+.no-content {
+  margin:0 auto;
+  position: relative;
+}
+
+.un-assign-btn {
+  color: #bf0016 !important;
+  margin: 0 5px;
+}
+
+.un-assign-btn:hover {
+  font-weight: bolder;
+}
+
+.content-innerHTML img {
+  border-radius: 0%;
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    height: 100vh;
+  }
+}

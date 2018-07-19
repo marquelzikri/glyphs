@@ -1,0 +1,53 @@
+.nav-link {
+  color: #858585;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.nav-link:hover {
+  color: #bf0016;
+}
+
+.nav-icon {
+  font-size: 20px;
+}
+
+.nav-item {
+  vertical-align: middle;
+}
+
+.sidenav-item {
+  visibility: hidden;
+  display: none;
+  margin: 0 15px;
+}
+
+.notification {
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav-item {
+    visibility: hidden;
+  }
+
+  .sidenav-item {
+    visibility: visible;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav-item {
+    visibility: visible;
+    margin: 0 5px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .sidenav-item {
+    visibility: visible;
+    margin: 0 5px;
+  }
+}

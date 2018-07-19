@@ -1,0 +1,15 @@
+.headline {
+  position: relative;
+  padding: 10px 0;
+  padding-left: 15px;
+  width: 100%;
+  background-color: white;
+  border-left: .1px solid rgb(247, 247, 247);
+  
+}
+.headline>p {
+  margin: 0;
+  font-size: 24px;
+  color: #bf0016;
+  font-weight: bold;
+}

@@ -1,0 +1,9 @@
+const GET_RSS = 'GET_RSS';
+const GET_RSS_SUCCESS = 'GET_RSS_SUCCESS';
+const GET_RSS_ERROR = 'GET_RSS_ERROR';
+
+export {
+  GET_RSS,
+  GET_RSS_SUCCESS,
+  GET_RSS_ERROR,
+}

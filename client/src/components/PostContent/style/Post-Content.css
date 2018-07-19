@@ -1,0 +1,27 @@
+.btn-category {
+  margin-right: 10px;
+}
+
+.btn-category-wrapper {
+  /* position: absolute; */
+  margin: auto;
+}
+
+.post-form {
+  margin: 15vh auto;
+}
+
+.post-content {
+  background-color: rgb(247, 247, 247);
+  margin-top: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hidden {
+  display: none;
+}

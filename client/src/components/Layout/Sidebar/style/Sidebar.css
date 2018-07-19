@@ -1,0 +1,164 @@
+.sidebar {
+  /* border-right: 1px solid #dee0e1; */
+  padding: 25px 0;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.list {
+  color: #333;
+  list-style: none;
+  padding-left: 0px;
+}
+
+.list> li{
+  padding: 15px 0px 15px 40px;
+}
+
+.list>li:hover {
+  background-color: #dee0e1;
+  border-left: 5px solid #bf0016;
+  color: #bf0016;
+  font-weight: bolder;
+  padding-left: 35px;
+}
+
+.sidebar-extra-block{
+  margin-top: 50px;
+  padding: 27px;
+}
+
+.sidebar-extra-block>p {
+  font-size: 10px;
+}
+
+.max-height{
+  font-size: 10px;
+  position: absolute;
+  padding: 25px 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.sidebar-profile {
+  visibility: hidden;
+  display: none;
+}
+
+.side-navbar {
+  flex-direction: row;
+}
+
+.list li a {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar-extra-block {
+    visibility: hidden;
+    display: none;
+    margin-top: 0;
+    padding: 0;
+    height: 0;
+  }
+
+  .list {
+    margin: 0;
+  }
+
+  .sidebar {
+    padding: 0;
+    border-bottom: 1px solid #bf0016;
+    min-height: 100%;
+  }
+
+  .list li a {
+    display: block;
+  }
+
+  .sidebar-profile {
+    visibility: visible;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .sidebar-profile {
+    visibility: visible;
+    display: block;
+  }
+
+  .list li a {
+    display: block;
+  }
+}
+
+/* overide _navbar.scss */
+@media (max-width: 1000px){
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 0;
+    display: block;
+  }
+
+  .sidebar-profile {
+    visibility: visible;
+    display: block;
+  }
+
+  .list li a {
+    display: block;
+  }
+}
+
+/* Style The Dropdown Button */
+.dropdown-btn-rss-list {
+  /* background-color: #4CAF50; */
+  /* color: white; */
+  /* padding: 16px; */
+  /* font-size: 16px; */
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown Content */
+.dropdown-rss-list {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-rss-list {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+  max-height: 129px;
+  left: 0;
+  overflow-y: auto;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-rss-list a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content-rss-list a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown-rss-list:hover .dropdown-content-rss-list {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown Content is shown */
+.dropdown-rss-list:hover .dropdown-btn-rss-list {
+  /* background-color: #3e8e41; */
+}

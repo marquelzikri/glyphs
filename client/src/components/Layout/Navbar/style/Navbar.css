@@ -1,0 +1,59 @@
+@media only screen and (max-width: 1000px) {
+  .navbar-brand {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar-brand {
+  background: #bf0016;
+  height: 60px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-brand-title {
+  color: #fff;
+  line-height: 60px;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand-title:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav {
+  border-bottom: 1px solid #dee0e1;
+  height: 60px;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.drop-icon-margin { /*icon di dropdown*/
+  margin-right: 20px;
+  width: 13px;
+  height: 13px;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+  border-left: 5px solid #bf0016;
+  color: #bf0016;
+  font-weight: bolder;
+}

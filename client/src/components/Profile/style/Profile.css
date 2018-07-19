@@ -1,0 +1,46 @@
+.profile-page-wrapper {
+  height: 100%;
+}
+
+.profile-page {
+  width: 100%;
+  text-align: center;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+}
+
+.user-avatar {
+  display:inline-block; /* so the children on the same line */
+  font-size: small;
+  height: auto;
+  margin: 5px 7px 0 3px;
+  width: auto;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 20px;
+
+  margin: 15px auto;
+}
+
+hr.title-content-divider {
+  margin-top: 0;
+}
+
+h4.title {
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.item {
+  text-align: left;
+  margin: auto 10px;
+}
+
+.item-title {
+  font-size: 1.25rem;
+}

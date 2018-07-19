@@ -1,0 +1,16 @@
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  left: auto;
+  right: 5px;
+}
+
+.dropdown-item:active {
+  background-color: #dee0e1;
+}
+
+@media (min-width: 992px){
+.navbar-expand-lg .navbar-nav .dropdown-menu-right {
+    right: 1px;
+    left: auto;
+  }
+}
