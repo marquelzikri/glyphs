@@ -1,10 +1,17 @@
 import { combineReducers } from 'redux';
+
 import authLoginReducer from '../components/Login/reducer';
 import authRegisterReducer from '../components/Login/reducer';
+
 import errorReducer from '../components/Login/reducer';
+
+import contentListReducer from '../components/ContentList/reducer';
 import contentReducer from '../components/Content/reducer';
+
 import postContentReducer from '../components/PostContent/reducer';
+
 import profileReducer from '../components/Profile/reducer';
+
 import sidebarReducer from '../components/Layout/Sidebar/reducer';
 
 export default combineReducers({
@@ -12,6 +19,7 @@ export default combineReducers({
   authRegister: authRegisterReducer,
   errors: errorReducer,
 
+  contentList: contentListReducer,
   content: contentReducer,
   postContent: postContentReducer,
 

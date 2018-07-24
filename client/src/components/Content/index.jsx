@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { 
-  addBookmark, 
+  bookmarkContent,
   removeBookmark, 
-  assignMe, 
-  unAssignMe 
+  assignContent,
+  removeAssignment
 } from './action';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import classnames from 'classnames';
 import axios from 'axios';
 import isEmpty from '../../validation/is-empty';
+
+import Loader from '../Common/Loader'
+
+import swal from 'sweetalert';
 
 import './styles/Content.css';
 
@@ -27,14 +31,45 @@ class Content extends Component {
     this.onAssignButtonClick = this.onAssignButtonClick.bind(this);
   }
 
+  componentDidMount() {
+    const { bookmarks, assignTo, authLogin } = this.props;
+    const { user } = authLogin;
+    // eslint-disable-next-line 
+    bookmarks.map(bookmark => {
+      if (bookmark.user === user.id) {
+        this.setState({isBookmarked:true})
+      }
+    });
+    if (assignTo === user.id) {
+      this.setState({assignTo: user.id})
+      axios
+        .get('/api/users/user_info/' + user.id)
+        .then(res=> {
+          let renderAvatar = res.data.avatar;
+
+          if (res.data.avatar) {
+            if (!res.data.avatar.includes('https:')){
+              renderAvatar = 'https:'+res.data.avatar
+            }
+          }
+          this.setState({ assignToAvatar: renderAvatar })
+          this.setState({ assignToName: res.data.name })
+        });
+    }
+  }
+
+  componentDidUpdate() {
+    this.renderAlert();
+  }
+
   onBookmarkClick() {
+    this.setState({ isBookmarked: !this.state.isBookmarked });
     if (this.state.isBookmarked){
-      this.setState({ isBookmarked: false });
       this.props.removeBookmark(this.props.id);
     }else{
-      this.setState({ isBookmarked: true });
       this.props.addBookmark(this.props.id);
     }
+    this.renderAlert();
   }
 
   onAssignButtonClick() {
@@ -63,45 +98,54 @@ class Content extends Component {
       this.setState({ assignToName: '' })
       unAssignMe(id);
     }
+    this.renderAlert();
   }
 
-  fetchContentMeta() {
-    if (this.props.content.parsingSuccess) {
-      // Temporary
-      return null;
+  renderAlert() {
+    const { 
+      isBookmarking, 
+      bookmarkedSuccessMessage,
+
+      removingBookmark,
+      removeBookmarkSuccessMessage,
+
+      assigningContent,
+      assignContentSuccessMessage,
+
+      removingAssignment,
+      removeAssignmentSuccessMessage
+    } = this.props.content;
+
+    if (!isBookmarking && bookmarkedSuccessMessage) {
+      return (
+        swal(bookmarkedSuccessMessage, "", "success")
+      );
     }
 
-    const { user } = this.props.authLogin;
-    // eslint-disable-next-line
-    this.props.content.contentData.map(content => {
-      // eslint-disable-next-line
-      content.bookmarks.map(bookmark => {
-        if (bookmark.user.toString() === user.id.toString() & content._id===this.props.id) {
-          this.setState({ isBookmarked: true });
-        }
-      })
+    if (!removingBookmark && removeBookmarkSuccessMessage) {
+      return (
+        swal(removeBookmarkSuccessMessage, "", "success")
+      );
+    }
 
-      // Assign to button
-      if (!isEmpty(content.assignTo) & content._id === this.props.id) {
-        this.setState({ assignTo: content.assignTo });
-        axios
-          .get('/api/users/user_info/'+content.assignTo.toString())
-          .then(res=> {
-            this.setState({ assignToAvatar: res.data.avatar })
-            this.setState({ assignToName: res.data.name })
-          })
-      }
-    });
-  }
+    if (!assigningContent && assignContentSuccessMessage) {
+      return (
+        swal(assignContentSuccessMessage, "", "success")
+      );
+    }
 
-  componentDidMount() {
-    this.fetchContentMeta();
+    if (!removingAssignment && removeAssignmentSuccessMessage) {
+      return (
+        swal(removeAssignmentSuccessMessage, "", "success")
+      );
+    }
   }
 
   render(){
-    const { url, title, desc, date, authLogin } = this.props;
+    const { url, title, desc, date, authLogin, content } = this.props;
     const { assignTo, assignToAvatar, assignToName, isBookmarked } = this.state;
     const { onAssignButtonClick, onBookmarkClick } = this;
+    const { isBookmarking, removingBookmark } = content;
 
     return(
       <div className="card content-card">
@@ -146,7 +190,9 @@ class Content extends Component {
 
             <div className="divider"/>
 
-            <button 
+            {isBookmarking || removingBookmark?
+              <Loader /> :
+              <button 
               className=
               {classnames("btn btn-outline-danger btn-bookmark", 
                 {
@@ -157,6 +203,7 @@ class Content extends Component {
             >
               <i className="far fa-bookmark"></i>
             </button> 
+            }
           </div>
         </div>
       </div>
@@ -178,4 +225,4 @@ const mapStateToProps = state => ({
   authLogin: state.authLogin
 });
 
-export default connect(mapStateToProps, { addBookmark, removeBookmark, assignMe, unAssignMe })(Content);
+export default connect(mapStateToProps, { addBookmark: bookmarkContent, removeBookmark, assignMe: assignContent, unAssignMe: removeAssignment })(Content);

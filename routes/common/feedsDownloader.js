@@ -13,7 +13,6 @@ const downloadFeeds = feedId => {
             let feedContents = await parser.parseURL(feed.URL);
 
             feedContents.items.forEach(item => {
-              let isAvailable = true;
               const newContent = new Content({
                 assignee: feed.addedBy,
                 URL: item.link,
@@ -27,7 +26,7 @@ const downloadFeeds = feedId => {
               Content.findOne({ 'URL': newContent.URL }, 'URL')
                 .then(content => {
                   if (content) {
-                    // console.log(content);
+                    console.log(content);
                   }else{
                     newContent.save().then(res => console.log(res.URL));
                   }

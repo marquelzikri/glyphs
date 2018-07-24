@@ -118,7 +118,7 @@ router.get("/parse_rss/:id", (req, res) => {
       (async () => {
 
         let feed = await parser.parseURL(feeds.URL);
-        let contentList = [];
+        let content = [];
       
         feed.items.forEach(item => {
           let newContent = ({
@@ -128,10 +128,10 @@ router.get("/parse_rss/:id", (req, res) => {
             category: 'RSS',
             date: item.isoDate
           });
-          contentList.unshift(newContent);
+          content.unshift(newContent);
         });
 
-        res.status(200).json(contentList);
+        res.status(200).json(content);
       
       })();
     })

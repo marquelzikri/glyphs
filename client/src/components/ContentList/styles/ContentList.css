@@ -1,0 +1,45 @@
+html, body {
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+.contentwrapper {
+  height: 100%;
+}
+
+.content {
+  background-color: rgb(247, 247, 247);
+  margin-top: 0;
+  overflow: scroll;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+
+.content-separator {
+  padding: 5px;
+}
+
+.no-content-wrapper {
+  text-align: center;
+}
+
+.no-content {
+  margin:0 auto;
+  position: relative;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    height: 100vh;
+  }
+  .contentwrapper {
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
+}

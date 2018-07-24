@@ -57,3 +57,13 @@ img {
   color: #bf0016;
   font-weight: bolder;
 }
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    width: 100vw;
+  }
+  .navbar-brand {
+    width: 100%;
+    margin: 0;
+  }
+}

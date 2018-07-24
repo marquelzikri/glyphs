@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { addContent, addFeed, checkURL, refreshStates } from './action';
-import Spinner from '../Common/Spinner/Index';
+import Spinner from '../Common/Spinner';
 
 import swal from 'sweetalert';
 
@@ -56,8 +56,6 @@ class PostContent extends Component {
         URL: URL,
         category: category
       }
-
-      console.log(newContent);
 
       addContent(newContent);
     }

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
-import Spinner from '../Common/Spinner/Index';
+import Spinner from '../Common/Spinner';
 
 import { getContents, parseRSS } from './action';
 import propTypes from 'prop-types';
 
-import Content from './Content';
-import Headline from '../Layout/Headline/Headline';
+import Content from '../Content';
+import Headline from '../Layout/Headline';
 
-import './styles/Content.css';
+import './styles/ContentList.css';
 import './styles/Scrollbar.css';
 
 class ContentList extends Component {
@@ -18,17 +18,6 @@ class ContentList extends Component {
     title: '',
     isMounted: false,
   } 
-
-  loadData() {
-    const { headline, getContents } = this.props;
-    const url_path = window.location.pathname.substring(1, 5);
-    const feed_id = window.location.pathname.substring(6, window.location.pathname.length);
-      if (url_path === 'feed'){
-        getContents('rss', feed_id);
-      }else{
-        getContents(headline, '');
-      }
-  }
 
   componentDidMount() {
     this.setState({
@@ -55,6 +44,17 @@ class ContentList extends Component {
     })
   }
 
+  loadData() {
+    const { headline, getContents } = this.props;
+    const url_path = window.location.pathname.substring(1, 5);
+    const feed_id = window.location.pathname.substring(6, window.location.pathname.length);
+      if (url_path === 'feed'){
+        getContents('rss', feed_id);
+      }else{
+        getContents(headline, '');
+      }
+  }
+
   renderContent = () => {
     const { 
       contentData, 
@@ -68,7 +68,7 @@ class ContentList extends Component {
       parsingSuccess,
       parseError,
       parseData
-    } = this.props.content;
+    } = this.props.contentList;
 
     // Content
     if (loading || parsing) {
@@ -86,7 +86,7 @@ class ContentList extends Component {
     }
 
     if(success){
-      return contentData.map(item =>
+      return contentData.map(item => 
         <Content
           key={item._id} 
           id={item._id} 
@@ -94,6 +94,8 @@ class ContentList extends Component {
           title={item.title}
           desc={item.desc}
           date={item.date.toString().substring(0, 10)}
+          bookmarks={item.bookmarks}
+          assignTo={item.assignTo}
         /> 
       );
     }
@@ -146,12 +148,12 @@ class ContentList extends Component {
 
 ContentList.propTypes = {
   getContents: propTypes.func.isRequired,
-  content: propTypes.object.isRequired,
+  contentList: propTypes.object.isRequired,
   parseRSS: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  content: state.content
+  contentList: state.contentList
 })
 
 export default connect(mapStateToProps, { getContents, parseRSS })(ContentList);

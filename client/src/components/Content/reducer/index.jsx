@@ -1,25 +1,23 @@
 import {
-  CONTENT_START_LOADING,
-  CONTENT_FINISH_LOADING,
-  ADD_BOOKMARK, 
+  BOOKMARK_CONTENT,
+  BOOKMARK_CONTENT_SUCCESS,
+  BOOKMARK_CONTENT_ERROR,
+
   REMOVE_BOOKMARK, 
-  ASSIGN_ME, 
-  UN_ASSIGN_ME, 
-  GET_CONTENTS_SUCCESS, 
-  GET_CONTENTS_ERROR,
-  REFRESH_STATE,
-  PARSE_RSS,
-  PARSE_RSS_SUCCESS,
-  PARSE_RSS_ERROR,
+  REMOVE_BOOKMARK_SUCCESS,
+  REMOVE_BOOKMARK_ERROR,
+
+  ASSIGN_CONTENT,
+  ASSIGN_CONTENT_SUCCESS,
+  ASSIGN_CONTENT_ERROR,
+
+  REMOVE_ASSIGNMENT,
+  REMOVE_ASSIGNMENT_SUCCESS,
+  REMOVE_ASSIGNMENT_ERROR,
 } from '../constant';
 
 import { 
-  successGetContent,
-  errorGetContent,
-  refreshStates,
-  parseRSS_Start,
-  parseRSS_Success,
-  parseRSS_Error,
+  startBookmarkContent, successBookmarkContent, errorBookmarkContent, startRemoveBookmark, successRemoveBookmark, errorRemoveBookmark, startAssignContent, successAssignContent, errorAssignContent, startRemoveAssignment, successRemoveAssignment, errorRemoveAssignment,
 } from '../util';
 
 const initialState = {
@@ -28,54 +26,41 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CONTENTS_SUCCESS:
-      const contentData = action.payload;
-      return Object.assign({}, successGetContent(state), { contentData });
-    case GET_CONTENTS_ERROR:
-      const errorData = action.payload;
-      return Object.assign({}, errorGetContent(state), { errorData });
-    case REFRESH_STATE:
-      return refreshStates(state);
+    case BOOKMARK_CONTENT:
+      return Object.assign({}, startBookmarkContent(state));
+    case BOOKMARK_CONTENT_SUCCESS:
+      const bookmarkedSuccessMessage = action.payload
+      return Object.assign({}, successBookmarkContent(state), { bookmarkedSuccessMessage });
+    case BOOKMARK_CONTENT_ERROR:
+      const bookmarkedErrorMessage = action.payload
+      return Object.assign({}, errorBookmarkContent(state), { bookmarkedErrorMessage });
 
-    case CONTENT_START_LOADING:
-      return {
-        ...state,
-        loading: true
-      }
-    case CONTENT_FINISH_LOADING:
-      return {
-        ...state,
-        loading: false
-      }
-
-    case PARSE_RSS:
-      return Object.assign({}, parseRSS_Start(state));
-
-    case PARSE_RSS_SUCCESS:
-      const parseData = action.payload;
-      return Object.assign({}, parseRSS_Success(state), { parseData });
-
-    case PARSE_RSS_ERROR:
-      const parseError = action.payload;
-      return Object.assign({}, parseRSS_Error(state), { parseError });
-
-    // Delete later (if no animation) 
-    case ADD_BOOKMARK:
-      return {
-        ...state,
-      }
     case REMOVE_BOOKMARK:
-      return {
-        ...state,
-      }
-    case ASSIGN_ME:
-      return {
-        ...state
-      }
-    case UN_ASSIGN_ME:
-      return {
-        ...state
-      }
+      return Object.assign({}, startRemoveBookmark(state));
+    case REMOVE_BOOKMARK_SUCCESS:
+      const removeBookmarkSuccessMessage = action.payload;
+      return Object.assign({}, successRemoveBookmark(state), { removeBookmarkSuccessMessage });
+    case REMOVE_BOOKMARK_ERROR:
+      const removeBookmarkErrorMessage = action.payload;
+      return Object.assign({}, errorRemoveBookmark(state), { removeBookmarkErrorMessage });
+
+    case ASSIGN_CONTENT:
+      return Object.assign({}, startAssignContent(state));
+    case ASSIGN_CONTENT_SUCCESS: 
+      const assignContentSuccessMessage = action.payload;
+      return Object.assign({}, successAssignContent(state), { assignContentSuccessMessage });
+    case ASSIGN_CONTENT_ERROR:
+      const assignContentErrorMessage = action.payload;
+      return Object.assign({}, errorAssignContent(state), { assignContentErrorMessage });
+
+    case REMOVE_ASSIGNMENT:
+      return Object.assign({}, startRemoveAssignment(state));
+    case REMOVE_ASSIGNMENT_SUCCESS:
+      const removeAssignmentSuccessMessage = action.payload;
+      return Object.assign({}, successRemoveAssignment(state), { removeAssignmentSuccessMessage });
+    case REMOVE_ASSIGNMENT_ERROR:
+      const removeAssignmentErrorMessage = action.payload;
+      return Object.assign({}, errorRemoveAssignment(state), { removeAssignmentErrorMessage });
     default:
       return state;
   }

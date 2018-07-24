@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { getBookmarksAndAssignments, removeBookmark, removeAssignment, resetStates } from './action';
 
 import './style/Profile.css';
-import Spinner from '../Common/Spinner/Index';
+import Spinner from '../Common/Spinner';
 import swal from 'sweetalert';
 
 class Profile extends Component {

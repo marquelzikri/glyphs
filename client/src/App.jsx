@@ -10,13 +10,15 @@ import { setCurrentUser, logoutUser } from './components/Login/action';
 import './App.css';
 
 import RedirectToHome from './RedirectToHome';
-import Sidebar from './components/Layout/Sidebar/Sidebar';
-import Navbar from './components/Layout/Navbar/Navbar';
-import ContentList from './components/Content/ContentList';
+import Sidebar from './components/Layout/Sidebar';
+import Navbar from './components/Layout/Navbar';
+
+import ContentList from './components/ContentList';
+
 import Login from './components/Login';
 import Register from './components/Register';
-import PostContent from './components/PostContent/Post-Content';
-import Profile from './components/Profile/Profile';
+import PostContent from './components/PostContent';
+import Profile from './components/Profile';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -57,11 +59,20 @@ class App extends Component {
     window.removeEventListener('resize', this.handleWindowSizeChange);
   }
 
+  componentDidUpdate() {
+    if (window.innerWidth !== this.state.width) {
+      this.setState({ width: window.innerWidth });
+    }
+  }
+
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
-  };
+    const { width, showSideBar } = this.state;
 
-  
+    width < 600?
+    this.setState({ showSideBar: !showSideBar })
+    : this.setState({ showSideBar: true })
+  };
 
   render() {
     const { width, showSideBar } = this.state;
@@ -69,7 +80,7 @@ class App extends Component {
 
     const updateSideBar = () => {
       width < 600?
-      this.setState({ showSideBar: !this.state.showSideBar })
+      this.setState({ showSideBar: !showSideBar })
       : this.setState({ showSideBar: true })
     }
 
@@ -85,7 +96,6 @@ class App extends Component {
               exact path = '/(today|translate|evergreen|ideas|post-content|profile|feed)/:feed_id?' 
               render = { (props) => 
                 <Navbar 
-                  // showSidebar={ this.updateSideBar } 
                   showSidebar={ updateSideBar } 
                   md4_md8={md4_md8}
                 /> 

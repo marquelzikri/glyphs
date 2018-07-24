@@ -42,23 +42,6 @@ class Login extends Component {
     }
   }
 
-  onInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  onSubmit(e) {
-    const { email, password } = this.state;
-    e.preventDefault();
-
-    const userData = {
-      email: email,
-      password: password,
-      authType: 'common'
-    }
-
-    this.props.login(userData);
-  }
-
   responseGoogle = (response) => {
     if(
       response.profileObj.email.includes('@techinasia.com')
@@ -81,6 +64,23 @@ class Login extends Component {
         }
       })
     }
+  }
+
+  onInputChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    const { email, password } = this.state;
+    e.preventDefault();
+
+    const userData = {
+      email: email,
+      password: password,
+      authType: 'common'
+    }
+
+    this.props.login(userData);
   }
 
   render() {
